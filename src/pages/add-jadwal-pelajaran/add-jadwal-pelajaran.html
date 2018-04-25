@@ -1,0 +1,101 @@
+<!--
+  Generated template for the AddTechnologyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+   <ion-title>{{ pageTitle }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<div>
+     
+<div *ngIf="hideForm">
+        <!-- <ion-item class="post-entry-message" text-wrap>
+            <h2>Success!</h2>
+            <p>Maybe you'd like to edit an existing entry or add a new record?</p>
+            <p>Simply go back to the home page and select the option you want to pursue.</p>
+         </ion-item>-->
+		 
+		<ion-item *ngFor="let item of items">
+		  <h2>{{ item.nama_mp }} </h2>
+		  <button 
+			 ion-button 
+			 color="primary" 
+			 item-right
+			 (click)="viewEntry({ record: item })">Ubah</button>
+	    </ion-item>
+</div>
+
+	  
+<div *ngIf="!hideForm">
+         <form [formGroup]="form" (ngSubmit)="saveEntry()">
+
+            <ion-list>
+               <ion-item-group>
+                  <ion-item-divider color="light">Tambah Kata</ion-item-divider>
+                  <ion-item>
+                     <ion-label>Mata Pelajaran</ion-label>
+                        <ion-select formControlName="kode_mp" [(ngModel)]="kode_mp">
+                          <ion-option value="Senin">Nama Mapel</ion-option>
+                          <ion-option value="Selasa">Nama Mapel</ion-option>
+                      </ion-select>
+                  </ion-item>
+                  <ion-item>
+                     <ion-label>Jam</ion-label>
+                        <ion-select formControlName="jam" [(ngModel)]="jam">
+                          <ion-option value="07:00">07:00</ion-option>
+                          <ion-option value="09:30">09:30</ion-option>
+                      </ion-select>
+                  </ion-item>
+                  <ion-item>
+                     <ion-input 
+                        type="text" 
+                        placeholder="Masukkan Ruangan" 
+                        formControlName="kelas" 
+                        [(ngModel)]="kelas">
+                          
+                      </ion-input>
+                  </ion-item>
+                  <ion-item>
+                     <ion-label>Hari</ion-label>
+                        <ion-select formControlName="hari" [(ngModel)]="hari">
+                          <ion-option value="Senin">Senin</ion-option>
+                          <ion-option value="Selasa">Selasa</ion-option>
+                      </ion-select>
+                  </ion-item>
+
+               </ion-item-group>
+			   
+
+			<ion-item>
+                  <button 
+                     ion-button 
+                     color="primary" 
+                     text-center 
+                     block 
+                     [disabled]="!form.valid">Simpan</button>
+            </ion-item>
+			<ion-item *ngIf="isEdited && !hideForm">
+				 <button 
+					ion-button 
+					item-right
+					color="secondary" 
+					text-center 
+					block 
+					(click)="deleteEntry()">Hapus Kata</button>
+			</ion-item>
+
+            </ion-list>
+
+         </form>
+      </div>
+   </div>		   
+
+</ion-content>

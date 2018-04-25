@@ -1,0 +1,18 @@
+<ion-header>
+
+  <ion-navbar color = "primary">
+    <ion-title>Presensi Siswa</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item  *ngFor="let item of items">
+      <ion-icon name="ios-stats" danger item-left></ion-icon>
+      <h2>{{ item.nama_mp }}</h2>
+      <h4>Masuk : {{ item.jml_masuk }}x</h4>
+    </ion-item>
+  </ion-list>
+</ion-content>

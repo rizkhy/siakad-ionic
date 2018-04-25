@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Mata Pelajaran
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<ion-item>
+      <button 
+         class="add"
+         ion-button 
+         item-right
+         icon-right
+         margin-bottom
+         color="primary"
+         (click)="addEntry()">
+            Tambah Kata
+            <ion-icon name="add"></ion-icon>
+      </button>
+ </ion-item>
+
+   <ion-item *ngFor="let item of items">
+      <h2>{{ item.nama_mp }} </h2>
+      <button 
+         ion-button 
+         color="primary" 
+         item-right
+         (click)="viewEntry({ record: item })">Ubah</button>
+   </ion-item>
+
+</ion-content>
