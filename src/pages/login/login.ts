@@ -32,17 +32,17 @@ login(){
 			this.response = result;
 			if(this.response.userData.level == '1'){
 				alert('Anda Berhasil Masuk Sebagai Guru');
-				localStorage.setItem('userData', JSON.stringify(this.userData));
+				localStorage.setItem('userData.', JSON.stringify(this.userData.username));
 				this.navCtrl.push(HomeGuruPage);
 
 			}else if(this.response.userData.level == '2'){
 				alert('Anda Berhasil Masuk Sebagai Siswa');
-				localStorage.setItem('userData', JSON.stringify(this.userData));
+				localStorage.setItem('userData', JSON.stringify(this.userData.username));
 				this.navCtrl.push(HomeSiswaPage);
 
 			}else if(this.response.userData.level == '3'){
 				alert('Anda Berhasil Masuk Sebagai Tata Usaha');
-				localStorage.setItem('userData', JSON.stringify(this.userData));
+				localStorage.setItem('userData', JSON.stringify(this.userData.username));
 				this.navCtrl.push(HomeTataUsahaPage);
 	}	
 	});

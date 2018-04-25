@@ -4,7 +4,7 @@
    // Define database connection parameters
    $hn      = 'localhost';
    $un      = 'root';
-   $pwd     = '';
+   $pwd     = 'root';
    $db      = 'siakad';
    $cs      = 'utf8';
    

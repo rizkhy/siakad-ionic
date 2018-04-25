@@ -36,7 +36,7 @@ export class AddSiswaPage {
    public pageTitle              : string;
    // Property to store the recordID for when an existing entry is being edited
    public recordID               : any      = null;
-   private baseURI               : string  = "http://localhost/";
+   private baseURI               : string  = "http://localhost/~light/SiakadAPI/";
     
    // Initialise module classes
    constructor(public navCtrl    : NavController,
@@ -50,10 +50,10 @@ export class AddSiswaPage {
       this.form = fb.group({
          "nama"                  : ["", Validators.required],
          "nis"					 : ["", Validators.required],
-         "alamat"					 : ["", Validators.required],
-         "password"					 : ["", Validators.required],
-         "nama_ortu"					 : ["", Validators.required],
-         "pkjr_ortu"                : ["", Validators.required]
+         "alamat"			     : ["", Validators.required],
+         "password"				 : ["", Validators.required],
+         "nama_ortu"			 : ["", Validators.required],
+         "pkjr_ortu"             : ["", Validators.required]
       });
    }
 

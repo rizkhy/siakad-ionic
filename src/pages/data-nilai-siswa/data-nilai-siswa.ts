@@ -21,7 +21,7 @@ export class DataNilaiSiswaPage {
 
   load()
    {
-      this.http.get('http://localhost/siswa/nilai-siswa.php')
+      this.http.get('http://localhost/~light/SiakadAPI/siswa/nilai-siswa.php')
       .map(res => res.json())
       .subscribe(data => 
       {
