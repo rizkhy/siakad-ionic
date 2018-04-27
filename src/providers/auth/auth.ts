@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
   and Angular DI.
 */
 
-let url = 'http://localhost/~light/siakadAPI/';
+let url = 'http://localhost/apiLogin/';
 @Injectable()
 export class AuthProvider {
 

@@ -28,7 +28,7 @@ export class TranskipSiswaPage {
   		let headers = new Headers();
       let data = JSON.stringify(dataa);
       
-  		this.http.post('http://localhost/~light/SiakadAPI/siswa/transkip-siswa.php', data, {headers: headers})
+  		this.http.post('http://localhost/siswa/transkip-siswa.php', data, {headers: headers})
       .map(res => res.json())
       .subscribe(data =>{
         this.items = data;        

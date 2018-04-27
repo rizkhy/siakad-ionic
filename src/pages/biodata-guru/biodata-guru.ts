@@ -1,25 +1,38 @@
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map'; 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
-/**
- * Generated class for the BiodataGuruPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-@IonicPage()
 @Component({
   selector: 'page-biodata-guru',
   templateUrl: 'biodata-guru.html',
 })
 export class BiodataGuruPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public items : any = [];
+  constructor(public navCtrl: NavController, public http   : Http) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BiodataGuruPage');
+  ionViewWillEnter()
+   {
+      this.getData();
+   }
+
+  
+   getData(){
+     var dataa = localStorage.getItem('userData');
+     
+  	return new Promise((resolve, reject)=>{
+  		let headers = new Headers();
+      let data = JSON.stringify(dataa);
+      
+  		this.http.post('http://localhost/guru/biodata-guru.php', data, {headers: headers})
+      .map(res => res.json())
+      .subscribe(data =>{
+        this.items = data;        
+      })
+  		})
   }
 
 }

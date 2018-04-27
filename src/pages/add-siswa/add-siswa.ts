@@ -36,7 +36,7 @@ export class AddSiswaPage {
    public pageTitle              : string;
    // Property to store the recordID for when an existing entry is being edited
    public recordID               : any      = null;
-   private baseURI               : string  = "http://localhost/~light/SiakadAPI/";
+   private baseURI               : string  = "http://localhost/";
     
    // Initialise module classes
    constructor(public navCtrl    : NavController,

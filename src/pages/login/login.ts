@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -14,7 +14,7 @@ import { HomeGuruPage } from '../home-guru/home-guru';
 })
 export class LoginPage {
 
-  constructor(public http:Http,private storage: Storage, public auth: AuthProvider, 
+  constructor(public http:Http, public auth: AuthProvider, 
   	public navCtrl: NavController, public toastCtrl: ToastController) {
 
 }

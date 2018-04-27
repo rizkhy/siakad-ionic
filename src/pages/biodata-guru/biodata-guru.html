@@ -1,31 +1,31 @@
-<!--
-  Generated template for the BiodataGuruPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>biodata-guru</ion-title>
+  <ion-navbar color = "primary">
+    <ion-title>Biodata Guru</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<ion-item>
-  <ion-label stacked>NIP</ion-label>
-  <ion-label>11411</ion-label>
-</ion-item>
 
-<ion-item>
-  <ion-label stacked>Nama Lengkap</ion-label>
-  <ion-label>Paijo Painem</ion-label>
-</ion-item>
+   <ion-list>
+    <ion-item *ngFor="let item of items">
+      <p>NIP</p>
+      <h2>{{ item.nip }}</h2>
+    </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Nama Lengkap</p>
+      <h2>{{ item.nama }}</h2>
+    </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Alamat</p>
+      <h2>{{ item.alamat }}</h2>
+    </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Password</p>
+      <h2>{{ item.password }}</h2>
+    </ion-item>
+</ion-list>
 
-<ion-item>
-  <ion-label stacked>Tempat, Tanggal Lahir</ion-label>
-  <ion-label>Bantul, 20 september 1999</ion-label>
-</ion-item>
-</ion-content>
+ </ion-content>

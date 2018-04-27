@@ -21,7 +21,7 @@ export class PresensiSiswaPage {
 
   load()
    {
-      this.http.get('http://localhost/~light/SiakadAPI/siswa/presensi-siswa.php')
+      this.http.get('http://localhost/siswa/presensi-siswa.php')
       .map(res => res.json())
       .subscribe(data => 
       {

@@ -1,31 +1,39 @@
-<!--
-  Generated template for the BiodataSiswaPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>biodata-siswa</ion-title>
+  <ion-navbar color = "primary">
+    <ion-title>Biodata Siswa</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<ion-item>
-  <ion-label stacked>NIS</ion-label>
-  <ion-label>11411</ion-label>
-</ion-item>
 
-<ion-item>
-  <ion-label stacked>Nama Lengkap</ion-label>
-  <ion-label>Paijo Painem</ion-label>
-</ion-item>
+   <ion-list>
+    <ion-item *ngFor="let item of items">
+      <p>NIS</p>
+      <h2>{{ item.nis }}</h2>
+    </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Nama Lengkap</p>
+      <h2>{{ item.nama }}</h2>
+    </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Alamat</p>
+      <h2>{{ item.alamat }}</h2>
+    </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Password</p>
+      <h2>{{ item.password }}</h2>
+    </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Nama Orang Tua</p>
+      <h2>{{ item.nama_ortu }}</h2>
+    </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Pekejerjaan Orang Tua</p>
+      <h2>{{ item.pkjr_ortu }}</h2>
+    </ion-item>
+</ion-list>
 
-<ion-item>
-  <ion-label stacked>Tempat, Tanggal Lahir</ion-label>
-  <ion-label>Bantul, 20 september 1999</ion-label>
-</ion-item>
-</ion-content>
+ </ion-content>
