@@ -1,18 +1,49 @@
-<!--
-  Generated template for the CrudNilaiSiswaPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>crud-nilai-siswa</ion-title>
+    <ion-title>Nilai Siswa</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+		<div class="row header">
+          <div class="col">Nama Kelas</div>
+          <div class="col">Semester</div>
+          <div class="col">Tahun Ajaran</div>
+          <div class="col">Mata Pelajaran</div>
+          <div class="col">Aksi</div>
+        </div>
+        <div class="row" ng-repeat="data in ctrl.data">
+          <div class="col">
+          	Kelas
+          </div>
+          <div class="col">
+          	<ion-select>
+          	  <ion-option value="" selected>- Pilih -</ion-option>
+              <ion-option value="Senin">Senin</ion-option>
+              <ion-option value="Selasa">Selasa</ion-option>
+            </ion-select>
+          </div>
+          <div class="col">
+          	<ion-select>
+          	  <ion-option value="" selected>- Pilih -</ion-option>
+              <ion-option value="Senin">Senin</ion-option>
+              <ion-option value="Selasa">Selasa</ion-option>
+            </ion-select>
+          </div>
+          <div class="col">
+          	<ion-select>
+          	  <ion-option value="" selected>- Pilih -</ion-option>
+              <ion-option value="Senin">Senin</ion-option>
+              <ion-option value="Selasa">Selasa</ion-option>
+            </ion-select>
+          </div>
+          <div class="col">
+          	<button ion-button class="font" (click)='addNilai()'>
+				Input Nilai
+			</button>
+          </div>
+        </div>
 </ion-content>

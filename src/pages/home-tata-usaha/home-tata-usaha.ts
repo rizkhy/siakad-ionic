@@ -5,6 +5,7 @@ import { CrudGuruPage } from '../crud-guru/crud-guru';
 import { CrudMataPelajaranPage } from '../crud-mata-pelajaran/crud-mata-pelajaran';
 import { CrudJadwalPelajaranPage } from '../crud-jadwal-pelajaran/crud-jadwal-pelajaran';
 import { CrudPresensiPage } from '../crud-presensi/crud-presensi';
+import { CrudKelasPage } from '../crud-kelas/crud-kelas';
 /*
  * Generated class for the HomeTataUsahaPage page.
  *
@@ -47,6 +48,12 @@ export class HomeTataUsahaPage {
   crudJadwalPelajaran(){
     this.navCtrl.push(CrudJadwalPelajaranPage, {
       val: 'crudJadwalPelajaran'
+    })
+  }
+
+  crudKelas(){
+    this.navCtrl.push(CrudKelasPage, {
+      val: 'crudKelas'
     })
   }
 

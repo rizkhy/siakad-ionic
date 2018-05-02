@@ -21,6 +21,8 @@ import { JadwalSiswaPage } from '../pages/jadwal-siswa/jadwal-siswa';
 import { CrudJadwalPelajaranPage } from '../pages/crud-jadwal-pelajaran/crud-jadwal-pelajaran';
 import { CrudPresensiPage } from '../pages/crud-presensi/crud-presensi';
 import { LoginPage } from '../pages/login/login';
+import { CrudKelasPage } from '../pages/crud-kelas/crud-kelas';
+import { AddNilaiSiswaPage } from '../pages/add-nilai-siswa/add-nilai-siswa';
 
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
@@ -47,7 +49,9 @@ import { AuthProvider } from '../providers/auth/auth';
     TranskipSiswaPage,
     CrudJadwalPelajaranPage,
     CrudPresensiPage,
-    LoginPage
+    LoginPage,
+    CrudKelasPage,
+    AddNilaiSiswaPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,9 @@ import { AuthProvider } from '../providers/auth/auth';
     TranskipSiswaPage,
     CrudJadwalPelajaranPage,
     CrudPresensiPage,
-    LoginPage
+    LoginPage,
+    CrudKelasPage,
+    AddNilaiSiswaPage
   ],
   providers: [
     StatusBar,

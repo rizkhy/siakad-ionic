@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AddNilaiSiswaPage } from '../add-nilai-siswa/add-nilai-siswa';
 /**
  * Generated class for the CrudNilaiSiswaPage page.
  *
@@ -20,6 +20,12 @@ export class CrudNilaiSiswaPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CrudNilaiSiswaPage');
+  }
+
+  addNilai(){
+  	this.navCtrl.push(AddNilaiSiswaPage, {
+  		val: 'addNilai'
+  	})
   }
 
 }

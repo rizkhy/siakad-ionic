@@ -21,8 +21,8 @@ export class BiodataGuruPage {
 
   
    getData(){
-     var dataa = localStorage.getItem('userData');
-     
+     var dataa = localStorage.getItem('userData.');
+   
   	return new Promise((resolve, reject)=>{
   		let headers = new Headers();
       let data = JSON.stringify(dataa);
