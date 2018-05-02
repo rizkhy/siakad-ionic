@@ -19,11 +19,9 @@ export class AddNilaiSiswaPage {
 
   public items : any = [];
   public form                   : FormGroup;          
-   public listMataPelajaran            : any;
-   public kode_mp           : any;
-   public nama_mp           : any;
-   public KKM           : any;
-   public nip           : any;
+   // public listMataPelajaran            : any;
+   public nilai_uts           	: any;
+   public nilai_uas             : any;
    // Flag to be used for checking whether we are adding/editing an entry
    public isEdited               : boolean = false;
    // Flag to hide the form upon successful completion of remote operation
@@ -38,76 +36,50 @@ export class AddNilaiSiswaPage {
                public http       : Http,
                public NP         : NavParams,
                public fb         : FormBuilder,
-               public toastCtrl  : ToastController) 
+               public toastCtrl  : ToastController,) 
    {
+  		 var a= 	this.items;
+  		 console.log(a);
    	      this.form = fb.group({
-         "nama_mp"                  : ["", Validators.required],
-         "kode_mp"           : ["", Validators.required],
-         "KKM"           : ["", Validators.required],
-         "nip"           : ["", Validators.required]
+	         "nilai_uas"           : ["", Validators.required],
+	         "nilai_uts"           : ["", Validators.required]
       });
    }
 
    // Retrieve the JSON encoded data from the remote server
    // Using Angular's Http class and an Observable - then
    // assign this to the items array for rendering to the HTML template
+
    load()
    {
       this.http.get('http://localhost/mata_pelajaran/view_input_nilai_siswa.php')
       .map(res => res.json())
       .subscribe(data => 
       {
-         this.items = data;         
+         this.items = data; 
+
       });
    }
 
-   
+     ionViewDidLoad() {
+     this.load();
+  }
     
-   // Initialise module classes
-   
-
-      // Create form builder validation rules
-
-
-   
-   // Determine whether we adding or editing a record
-   // based on any supplied navigation parameters
-   ionViewWillEnter()
-   {
-      this.resetFields();
-
-      if(this.NP.get("record"))
-      {
-         this.isEdited      = true;
-         this.selectEntry(this.NP.get("record"));
-         this.pageTitle     = 'Ubah Data';
-      }
-      else
-      {
-         this.isEdited      = false;
-         this.pageTitle     = 'Tambah Data';
-      }
-   }
-
-
-
-   // Assign the navigation retrieved data to properties
-   // used as models on the page's HTML form
    selectEntry(item)
    {
-      this.kode_mp      = item.kode_mp;
-      this.nama_mp      = item.nama_mp;
-      this.KKM      = item.KKM;
-      this.nip      = item.nip;
+     var a = this.nilai_uts      = item.nilai_uts+item.nis;
+     console.log(a)
+      this.nilai_uas      = item.nilai_uas;
+    }
    
    // Allow navigation to the AddTechnology page for creating a new entry
- addEntry(nama_mp)
+ addEntry(nilai_uas)
    {
-      let body     : string   = "key=create&nama_mp=" + nama_mp + "&kode_mp=" +this.kode_mp +"&KKM="+ this.KKM + "&nip=" + this.nip,
+      let body     : string   = "key=create&nilai_uas=" + nilai_uas + "&nilai_uts=" +this.nilai_uts,
           type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
           headers  : any      = new Headers({ 'Content-Type': type}),
           options  : any      = new RequestOptions({ headers: headers }),
-          url      : any      = this.baseURI + "mata_pelajaran/manage-data.php";
+          url      : any      = this.baseURI + "mata_pelajaran/crud_input_nilai_siswa.php";
 
  this.http.post(url, body, options)
       .subscribe((data) =>
@@ -116,7 +88,7 @@ export class AddNilaiSiswaPage {
          if(data.status === 200)
          {
             this.hideForm   = true;
-            this.sendNotification(`Congratulations the mata-pelajaran: ${nama_mp} was successfully added`);
+            this.sendNotification(`Congratulations the mata-pelajaran: ${nilai_uas} was successfully added`);
          }
          // Otherwise let 'em know anyway
          else
@@ -133,6 +105,15 @@ export class AddNilaiSiswaPage {
    viewEntry(param)
    {
       this.navCtrl.push('AddMataPelajaranPage', param);
+   }
+
+      sendNotification(message)  : void
+   {
+      let notification = this.toastCtrl.create({
+          message       : message,
+          duration      : 3000
+      });
+      notification.present();
    }
    
 }

@@ -15,17 +15,13 @@
 	Mata Pelajaran : blablabla<br>
 	KKM : {{item.KKM}}<br>
 	</div>
-	<button ion-button class="font">
-		Input Nilai
-	</button>
-        
 		<div class="row header">
           <div class="col">NIS</div>
           <div class="col">Nama Siswa</div>
           <div class="col">Nilai UTS</div>
           <div class="col">Nilai UAS</div>
         </div>
-        
+        <form [formGroup]="form" (ngSubmit)="addEntry()">
         <div class="row" ng-repeat="data in ctrl.data" *ngFor="let item of items">
           <div class="col">
           	{{ item.nis }}
@@ -34,11 +30,16 @@
           	{{ item.nama }}
           </div>
           <div class="col">
-          	<ion-input type="text" placeholder="Masukkan UTS"></ion-input>
+          	<ion-input type="text" placeholder="Masukkan UTS" formControlName="nilai_uts{{ item.nis }}" 
+                        [(ngModel)]="nilai_uts"></ion-input>
           </div>
           <div class="col">
-          	<ion-input type="text" placeholder="Masukkan UAS"></ion-input>
+          	<ion-input type="text" placeholder="Masukkan UAS"  formControlName="nilai_uas" 
+                        [(ngModel)]="nilai_uas"></ion-input>
           </div>
         </div>
-        	
+          <button ion-button class="font">
+			Input Nilai
+		  </button>
+      </form>  	
 </ion-content>
