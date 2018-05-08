@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Storage } from '@ionic/storage';
 import { AuthProvider } from '../../providers/auth/auth';
 import { NavController, ToastController } from 'ionic-angular';
 import { HomeSiswaPage } from '../home-siswa/home-siswa';

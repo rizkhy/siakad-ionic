@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import { NavController, NavParams, ToastController} from 'ionic-angular';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -38,8 +38,6 @@ export class AddNilaiSiswaPage {
                public fb         : FormBuilder,
                public toastCtrl  : ToastController,) 
    {
-  		 var a= 	this.items;
-  		 console.log(a);
    	      this.form = fb.group({
 	         "nilai_uas"           : ["", Validators.required],
 	         "nilai_uts"           : ["", Validators.required]
