@@ -27,10 +27,10 @@
           	{{ item.nis }}
           </div>
           <div class="col">
-          	{{ item.nama }}
+          	{{ item.nama }}  {{ item.name_nilai_uts }}
           </div>
           <div class="col">
-          	<ion-input type="text" placeholder="Masukkan UTS" formControlName="nilai_uts{{ item.nis }}" 
+          	<ion-input type="text" placeholder="Masukkan UTS" formControlName="nilai_uts" 
                         [(ngModel)]="nilai_uts"></ion-input>
           </div>
           <div class="col">

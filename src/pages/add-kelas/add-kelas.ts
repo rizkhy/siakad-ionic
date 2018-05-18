@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angul
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { CrudKelasPage } from '../crud-kelas/crud-kelas';
 
 /**
  * Generated class for the Addmata-pelajaranPage page.
@@ -105,6 +106,7 @@ export class AddKelasPage {
          {
             this.hideForm   = true;
             this.sendNotification(`Congratulations the mata-pelajaran: ${nama_kelas} was successfully added`);
+            this.navCtrl.push(CrudKelasPage);
          }
          // Otherwise let 'em know anyway
          else

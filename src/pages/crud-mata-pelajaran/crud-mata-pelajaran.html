@@ -17,18 +17,18 @@
          margin-bottom
          color="primary"
          (click)="addEntry()">
-            Tambah Kata
+            Tambah Mata Pelajaran
             <ion-icon name="add"></ion-icon>
       </button>
  </ion-item>
 
    <ion-item *ngFor="let item of items">
-      <h2>{{ item.nama_mp }} - {{ item.kode_mp }}</h2> 
+      <h2>{{ item.kode_mp }} - {{ item.nama_mp }}</h2> 
       <button 
          ion-button 
          color="primary" 
          item-right
-         (click)="viewEntry({ record: item })">Ubah</button>
+         (click)="viewEntry({ record: item })">Edit</button>
    </ion-item>
 
 </ion-content>

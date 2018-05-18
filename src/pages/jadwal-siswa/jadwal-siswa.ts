@@ -1,25 +1,57 @@
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map'; 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
-/**
- * Generated class for the JadwalSiswaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-@IonicPage()
 @Component({
   selector: 'page-jadwal-siswa',
   templateUrl: 'jadwal-siswa.html',
 })
 export class JadwalSiswaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public items : any = [];
+  hari: any;
+  constructor(public navCtrl: NavController, public http   : Http) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad JadwalSiswaPage');
-  }
+  ionViewWillEnter()
+   {
+      this.getData();
+   }
 
+   getData(){
+    var dataa = localStorage.getItem('userData');
+
+
+  	return new Promise((resolve, reject)=>{
+  	  let headers = new Headers();
+      let data = JSON.stringify(dataa);
+      
+  		this.http.post('http://localhost/siswa/jadwal-siswa.php', data, {headers: headers})
+      .map(res => res.json())
+      .subscribe(data =>{
+        this.items = data;        
+      })
+  		})
+  }
+  getHari(){
+  	var dataa = localStorage.getItem('userData');
+    var harii = this.hari;
+
+  	return new Promise((resolve, reject)=>{
+  	  let headers = new Headers();
+      let data = JSON.stringify(dataa);
+      let hari = JSON.stringify(harii);
+
+      let a = data+hari;
+
+      console.log(a)
+  		this.http.post('http://localhost/siswa/jadwal-hari.php', a, {headers: headers})
+      .map(res => res.json())
+      .subscribe(data =>{
+        this.items = data;        
+      })
+  		})
+  }
 }

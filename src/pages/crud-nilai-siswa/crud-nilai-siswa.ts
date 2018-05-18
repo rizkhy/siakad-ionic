@@ -1,31 +1,43 @@
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map'; 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AddNilaiSiswaPage } from '../add-nilai-siswa/add-nilai-siswa';
-/**
- * Generated class for the CrudNilaiSiswaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NavController } from 'ionic-angular';
 
-@IonicPage()
+
 @Component({
   selector: 'page-crud-nilai-siswa',
   templateUrl: 'crud-nilai-siswa.html',
 })
 export class CrudNilaiSiswaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public items : any = [];
+  constructor(public navCtrl: NavController, public http   : Http) {
+    
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CrudNilaiSiswaPage');
-  }
+ ionViewWillEnter()
+   {
+      this.load();
+   }
+
+   // Retrieve the JSON encoded data from the remote server
+   // Using Angular's Http class and an Observable - then
+   // assign this to the items array for rendering to the HTML template
+   load()
+   {
+      this.http.get('http://localhost/mata_pelajaran/view_nilai_siswa.php')
+      .map(res => res.json())
+      .subscribe(data => 
+      {
+         this.items = data;         
+      });
+   }
 
   addNilai(){
-  	this.navCtrl.push(AddNilaiSiswaPage, {
-  		val: 'addNilai'
-  	})
-  }
+      this.navCtrl.push('AddNilaiSiswaPage');
+   }
+
+
 
 }

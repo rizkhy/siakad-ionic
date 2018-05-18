@@ -18,10 +18,11 @@ import 'rxjs/add/operator/map';
 export class AddNilaiSiswaPage {
 
   public items : any = [];
+  public data : any = [];
   public form                   : FormGroup;          
    // public listMataPelajaran            : any;
-   public nilai_uts           	: any;
-   public nilai_uas             : any;
+   public nilai_uts           	: any = [];
+   public nilai_uas             : any =[];
    // Flag to be used for checking whether we are adding/editing an entry
    public isEdited               : boolean = false;
    // Flag to hide the form upon successful completion of remote operation
@@ -38,7 +39,7 @@ export class AddNilaiSiswaPage {
                public fb         : FormBuilder,
                public toastCtrl  : ToastController,) 
    {
-   	      this.form = fb.group({
+      this.form = fb.group({
 	         "nilai_uas"           : ["", Validators.required],
 	         "nilai_uts"           : ["", Validators.required]
       });
@@ -54,18 +55,29 @@ export class AddNilaiSiswaPage {
       .map(res => res.json())
       .subscribe(data => 
       {
-         this.items = data; 
-
+        this.items = data;
       });
+
    }
 
      ionViewDidLoad() {
      this.load();
-  }
+     this.data[0]="asdsadas";
+      for (var i = 0;i<this.items.length; i++) {
+          this.data.push({
+            test: i
+          })
+          // this.items.push({
+          //   name_nilai_uts : "nilai_uts"+i,
+          //   name_nilai_uas : "nilai_uas"+i
+          // });
+        }     
+     console.log(this.data);
+    }
     
    selectEntry(item)
    {
-     var a = this.nilai_uts      = item.nilai_uts+item.nis;
+     var a = this.nilai_uts      = item.nilai_uts;
      console.log(a)
       this.nilai_uas      = item.nilai_uas;
     }

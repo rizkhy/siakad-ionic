@@ -17,13 +17,13 @@
          margin-bottom
          color="primary"
          (click)="addEntry()">
-            Tambah Kata
+            Tambah Jadwal
             <ion-icon name="add"></ion-icon>
       </button>
  </ion-item>
 
    <ion-item *ngFor="let item of items">
-      <h2>{{ item.kelas }} </h2>
+      <h2>{{ item.hari }} </h2>
       <button 
          ion-button 
          color="primary" 

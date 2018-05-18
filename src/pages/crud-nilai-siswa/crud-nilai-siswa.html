@@ -15,20 +15,12 @@
 		<div class="row header">
           <div class="col">Nama Kelas</div>
           <div class="col">Semester</div>
-          <div class="col">Tahun Ajaran</div>
           <div class="col">Mata Pelajaran</div>
           <div class="col">Aksi</div>
         </div>
-        <div class="row" ng-repeat="data in ctrl.data">
+        <div class="row" ng-repeat="data in ctrl.data"  *ngFor="let item of items">
           <div class="col">
-          	Kelas
-          </div>
-          <div class="col">
-          	<ion-select>
-          	  <ion-option value="" selected>- Pilih -</ion-option>
-              <ion-option value="Senin">Senin</ion-option>
-              <ion-option value="Selasa">Selasa</ion-option>
-            </ion-select>
+          	{{ item.nama_kelas }}
           </div>
           <div class="col">
           	<ion-select>

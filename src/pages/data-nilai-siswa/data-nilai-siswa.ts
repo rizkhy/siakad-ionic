@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map'; 
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
@@ -11,43 +11,47 @@ import { NavController } from 'ionic-angular';
 export class DataNilaiSiswaPage {
 
   public items : any = [];
+  semester: any;
   constructor(public navCtrl: NavController, public http   : Http) {
   }
 
   ionViewWillEnter()
    {
-      this.load();
+      this.getData();
    }
 
-  load()
-   {
-      this.http.get('http://localhost/siswa/nilai-siswa.php')
+   getData(){
+    var dataa = localStorage.getItem('userData');
+
+
+    return new Promise((resolve, reject)=>{
+      let headers = new Headers();
+      let data = JSON.stringify(dataa);
+      
+      this.http.post('http://localhost/siswa/nilai-siswa.php', data, {headers: headers})
       .map(res => res.json())
-      .subscribe(data => 
-      {
-         this.items = data;         
-      });
-   }
+      .subscribe(data =>{
+        this.items = data;        
+      })
+      })
+  }
+  getSemester(){
+    var dataa = localStorage.getItem('userData');
+    var semesterr = this.semester;
 
-   getItems(ev: any) { // digunakan untuk memanggil event pada home.html
+    return new Promise((resolve, reject)=>{
+      let headers = new Headers();
+      let data = JSON.stringify(dataa);
+      let semester = JSON.stringify(semesterr);
 
-    let val = ev.target.value;   
+      let a = data+semester;
 
-    if (val && val.trim() != '') {
-
-      this.items = this.items.filter((item) => {
-
-        return (item.nama_mp.toString().toLowerCase().indexOf(val.toLowerCase()) > - 1);
-
-      })
-
-    }
-
-    if(val == ''){
-
-      return this.load();
-
-    }
-
-  }
+      console.log(a)
+      this.http.post('http://localhost/siswa/nilai-semester.php', a, {headers: headers})
+      .map(res => res.json())
+      .subscribe(data =>{
+        this.items = data;        
+      })
+      })
+  }
 }

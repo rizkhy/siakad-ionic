@@ -10,18 +10,21 @@
 <ion-content padding>
 	<ion-item>
   		<ion-label>Hari</ion-label>
-  			<ion-select [(ngModel)]="hari">
+  			<ion-select [(ngModel)]="hari" (ionChange)="getHari()">
 			    <ion-option value="Senin">Senin</ion-option>
-			    <ion-option value="Selasa">Selasa</ion-option>
-			</ion-select>
+          <ion-option value="Selasa">Selasa</ion-option>
+          <ion-option value="Rabu">Rabu</ion-option>
+          <ion-option value="Kamis">Kamis</ion-option>
+          <ion-option value="Jum'at">Jum'at</ion-option>
+			  </ion-select>
 	</ion-item>
 
 <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let item of items">
       <ion-icon name="md-calendar" danger item-left></ion-icon>
-      <h2>Mata Pelajaran</h2>
-      <h3>Jam - Kelas</h3>
-      <p>Guru</p>
+      <h2>{{ item.nama_mp }}</h2>
+      <h3>Ruang : {{ item.nama_kelas }} Jam : {{ item.jam }}</h3>
+      <p>Guru: {{ item.nama }}</p>
     </ion-item>
   </ion-list>
 </ion-content>
