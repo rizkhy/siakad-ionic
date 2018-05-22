@@ -23,7 +23,9 @@
  </ion-item>
 
    <ion-item *ngFor="let item of items">
-      <h2>{{ item.hari }} </h2>
+      <h1>{{ item.kode_mp }} </h1>
+      <h3>{{ item.hari }} - {{ item.kode_kelas }}, {{ item.jam }} </h3>
+      <p>{{ item.nip }} </p>
       <button 
          ion-button 
          color="primary" 

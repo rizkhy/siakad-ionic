@@ -39,12 +39,11 @@
 
             <ion-list>
                <ion-item-group>
-                  <ion-item-divider color="light">Tambah Kata</ion-item-divider>
+                  <ion-item-divider color="light">Jadwal Pelajaran</ion-item-divider>
                   <ion-item>
                      <ion-label>Mata Pelajaran</ion-label>
                         <ion-select formControlName="kode_mp" [(ngModel)]="kode_mp">
-                          <ion-option value="Senin">Nama Mapel</ion-option>
-                          <ion-option value="Selasa">Nama Mapel</ion-option>
+                          <ion-option  *ngFor="let item of items" value="{{ item.kode_mp }}">{{ item.kode_mp }}</ion-option>
                       </ion-select>
                   </ion-item>
                   <ion-item>
@@ -52,27 +51,30 @@
                         <ion-select formControlName="jam" [(ngModel)]="jam">
                           <ion-option value="07:00">07:00</ion-option>
                           <ion-option value="09:30">09:30</ion-option>
+                          <ion-option value="10:00">10:00</ion-option>
+                          <ion-option value="11:30">11:30</ion-option>
+                          <ion-option value="12:00">12:00</ion-option>
+                          <ion-option value="13:30">13:30</ion-option>
+                          <ion-option value="15:00">15:00</ion-option>
                       </ion-select>
                   </ion-item>
                   <ion-item>
-                     <ion-input 
-                        type="text" 
-                        placeholder="Masukkan Ruangan" 
-                        formControlName="kelas" 
-                        [(ngModel)]="kelas">
-                          
-                      </ion-input>
+                     <ion-label>Ruangan</ion-label>
+                        <ion-select formControlName="kelas" [(ngModel)]="kelas">
+                          <ion-option  *ngFor="let item of items" value="{{ item.kode_kelas }}">{{ item.kode_kelas }}</ion-option>
+                      </ion-select>
                   </ion-item>
                   <ion-item>
                      <ion-label>Hari</ion-label>
                         <ion-select formControlName="hari" [(ngModel)]="hari">
                           <ion-option value="Senin">Senin</ion-option>
                           <ion-option value="Selasa">Selasa</ion-option>
+                          <ion-option value="Rabu">Rabu</ion-option>
+                          <ion-option value="Kamis">Kamis</ion-option>
+                          <ion-option value="Jum'at">Jum'at</ion-option>
                       </ion-select>
                   </ion-item>
-
                </ion-item-group>
-			   
 
 			<ion-item>
                   <button 
@@ -89,7 +91,7 @@
 					color="secondary" 
 					text-center 
 					block 
-					(click)="deleteEntry()">Hapus Kata</button>
+					(click)="deleteEntry()">Hapus</button>
 			</ion-item>
 
             </ion-list>

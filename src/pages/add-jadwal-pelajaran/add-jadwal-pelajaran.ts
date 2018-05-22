@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angul
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { CrudJadwalPelajaranPage } from '../crud-jadwal-pelajaran/crud-jadwal-pelajaran';
 
 /**
  * Generated class for the Addjadwal-pelajaranPage page.
@@ -34,6 +35,7 @@ export class AddJadwalPelajaranPage {
    // Property to store the recordID for when an existing entry is being edited
    public recordID               : any      = null;
    private baseURI               : string  = "http://localhost/";
+   public items : any = [];
     
    // Initialise module classes
    constructor(public navCtrl    : NavController,
@@ -58,7 +60,7 @@ export class AddJadwalPelajaranPage {
    ionViewWillEnter()
    {
       this.resetFields();
-
+      this.load();
       if(this.NP.get("record"))
       {
          this.isEdited      = true;
@@ -70,6 +72,16 @@ export class AddJadwalPelajaranPage {
          this.isEdited      = false;
          this.pageTitle     = 'Tambah Data';
       }
+   }
+
+   load()
+   {
+      this.http.get('http://localhost/mata_pelajaran/view_jadwal_pelajaran.php')
+      .map(res => res.json())
+      .subscribe(data => 
+      {
+         this.items = data;         
+      });
    }
 
 
@@ -108,6 +120,7 @@ export class AddJadwalPelajaranPage {
          {
             this.hideForm   = true;
             this.sendNotification(`Congratulations the jadwal-pelajaran: ${jam} was successfully added`);
+            this.navCtrl.push(CrudJadwalPelajaranPage);
          }
          // Otherwise let 'em know anyway
          else
@@ -140,6 +153,7 @@ export class AddJadwalPelajaranPage {
          {
             this.hideForm  =  true;
             this.sendNotification(`Congratulations the jadwal-pelajaran: ${jam} was successfully updated`);
+            this.navCtrl.push(CrudJadwalPelajaranPage);
          }
          // Otherwise let 'em know anyway
          else
@@ -172,6 +186,7 @@ export class AddJadwalPelajaranPage {
          {
             this.hideForm     = true;
             this.sendNotification(`Congratulations the jadwal-pelajaran: ${jam} was successfully deleted`);
+            this.navCtrl.push(CrudJadwalPelajaranPage);
          }
          // Otherwise let 'em know anyway
          else

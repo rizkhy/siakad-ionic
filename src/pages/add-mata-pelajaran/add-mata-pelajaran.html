@@ -69,9 +69,8 @@
                   </ion-item>
                   <ion-item>
                      <ion-label>Guru</ion-label>
-                        <ion-select formControlName="KKM" [(ngModel)]="nip">
-                          <ion-option value="Senin">Senin</ion-option>
-                          <ion-option value="Selasa">Selasa</ion-option>
+                        <ion-select formControlName="nip" [(ngModel)]="nip">
+                          <ion-option  *ngFor="let item of items" value="{{ item.nip }}">{{ item.nama }}</ion-option>
                       </ion-select>
                   </ion-item>
 

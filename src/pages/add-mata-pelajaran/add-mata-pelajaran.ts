@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angul
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { CrudMataPelajaranPage } from '../crud-mata-pelajaran/crud-mata-pelajaran';
 
 /**
  * Generated class for the Addmata-pelajaranPage page.
@@ -34,7 +35,8 @@ export class AddMataPelajaranPage {
    // Property to store the recordID for when an existing entry is being edited
    public recordID               : any      = null;
    private baseURI               : string  = "http://localhost/";
-    
+   public items : any = [];
+
    // Initialise module classes
    constructor(public navCtrl    : NavController,
                public http       : Http,
@@ -58,6 +60,7 @@ export class AddMataPelajaranPage {
    ionViewWillEnter()
    {
       this.resetFields();
+      this.load();
 
       if(this.NP.get("record"))
       {
@@ -70,6 +73,17 @@ export class AddMataPelajaranPage {
          this.isEdited      = false;
          this.pageTitle     = 'Tambah Data';
       }
+
+   }
+
+   load()
+   {
+      this.http.get('http://localhost/mata_pelajaran/retrieve-data.php')
+      .map(res => res.json())
+      .subscribe(data => 
+      {
+         this.items = data;         
+      });
    }
 
 
@@ -108,6 +122,7 @@ export class AddMataPelajaranPage {
          {
             this.hideForm   = true;
             this.sendNotification(`Congratulations the mata-pelajaran: ${nama_mp} was successfully added`);
+            this.navCtrl.push(CrudMataPelajaranPage);
          }
          // Otherwise let 'em know anyway
          else
@@ -140,6 +155,7 @@ export class AddMataPelajaranPage {
          {
             this.hideForm  =  true;
             this.sendNotification(`Congratulations the mata-pelajaran: ${nama_mp} was successfully updated`);
+            this.navCtrl.push(CrudMataPelajaranPage);
          }
          // Otherwise let 'em know anyway
          else
@@ -172,6 +188,7 @@ export class AddMataPelajaranPage {
          {
             this.hideForm     = true;
             this.sendNotification(`Congratulations the mata-pelajaran: ${nama_mp} was successfully deleted`);
+            this.navCtrl.push(CrudMataPelajaranPage);
          }
          // Otherwise let 'em know anyway
          else
