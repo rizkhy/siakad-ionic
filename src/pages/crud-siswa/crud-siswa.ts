@@ -2,7 +2,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map'; 
 import { Component } from '@angular/core';
 import { NavController, ViewController } from 'ionic-angular';
-
+import { HomeTataUsahaPage } from '../home-tata-usaha/home-tata-usaha';
 
 @Component({
   selector: 'page-crud-siswa',
@@ -76,6 +76,8 @@ export class CrudSiswaPage {
 
 closeModal()
    {
-      this.viewCtrl.dismiss();
+      this.navCtrl.push(HomeTataUsahaPage, {
+      val: 'HomeTataUsahaPage'
+    })
    }
 }

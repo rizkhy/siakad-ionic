@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
+import { HomeTataUsahaPage } from '../home-tata-usaha/home-tata-usaha';
 /**
  * Generated class for the AddPresensiPage page.
  *
@@ -15,11 +15,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddPresensiPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+               public viewCtrl       : ViewController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPresensiPage');
   }
+
+closeModal()
+   {
+      this.navCtrl.push(HomeTataUsahaPage, {
+      val: 'HomeTataUsahaPage'
+    })
+   }
 
 }

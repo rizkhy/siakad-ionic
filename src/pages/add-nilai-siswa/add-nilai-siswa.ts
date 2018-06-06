@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController} from 'ionic-angular';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-/**
- * Generated class for the CrudMataPelajaranPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { HomeGuruPage } from '../home-guru/home-guru';
+
+// , Headers, RequestOptions
 
 
 @Component({
@@ -18,8 +15,8 @@ import 'rxjs/add/operator/map';
 export class AddNilaiSiswaPage {
 
   public items : any = [];
-  public data : any = [];
-  public form                   : FormGroup;          
+  public form                   : FormGroup;
+  public kkm : string;          
    // public listMataPelajaran            : any;
    public nilai_uts           	: any = [];
    public nilai_uas             : any =[];
@@ -31,7 +28,7 @@ export class AddNilaiSiswaPage {
    public pageTitle              : string;
    // Property to store the recordID for when an existing entry is being edited
    public recordID               : any      = null;
-   private baseURI               : string  = "http://localhost/";
+   // private baseURI               : string  = "http://localhost/";
 
   constructor(public navCtrl    : NavController,
                public http       : Http,
@@ -39,10 +36,7 @@ export class AddNilaiSiswaPage {
                public fb         : FormBuilder,
                public toastCtrl  : ToastController,) 
    {
-      this.form = fb.group({
-	         "nilai_uas"           : ["", Validators.required],
-	         "nilai_uts"           : ["", Validators.required]
-      });
+      this.form = fb.group({ });
    }
 
    // Retrieve the JSON encoded data from the remote server
@@ -56,56 +50,52 @@ export class AddNilaiSiswaPage {
       .subscribe(data => 
       {
         this.items = data;
+        this.kkm = data[0].kkm;
+        for(var i=0;i<this.items.length;i++){
+          this.form.addControl(this.items[i].uts,this.fb.control('',Validators.required));
+          this.form.addControl(this.items[i].uas,this.fb.control('',Validators.required));
+        }
       });
 
    }
 
-     ionViewDidLoad() {
+    ionViewDidLoad() {
      this.load();
-     this.data[0]="asdsadas";
-      for (var i = 0;i<this.items.length; i++) {
-          this.data.push({
-            test: i
-          })
-          // this.items.push({
-          //   name_nilai_uts : "nilai_uts"+i,
-          //   name_nilai_uas : "nilai_uas"+i
-          // });
-        }     
-     console.log(this.data);
+     
     }
     
    selectEntry(item)
-   {
+    {
      var a = this.nilai_uts      = item.nilai_uts;
      console.log(a)
       this.nilai_uas      = item.nilai_uas;
     }
    
    // Allow navigation to the AddTechnology page for creating a new entry
- addEntry(nilai_uas)
+ addEntry(value)
    {
-      let body     : string   = "key=create&nilai_uas=" + nilai_uas + "&nilai_uts=" +this.nilai_uts,
-          type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
-          headers  : any      = new Headers({ 'Content-Type': type}),
-          options  : any      = new RequestOptions({ headers: headers }),
-          url      : any      = this.baseURI + "mata_pelajaran/crud_input_nilai_siswa.php";
+     console.log(value);
+ //      let body     : string   = "key=create&nilai_uas=" + nilai_uas + "&nilai_uts=" +this.nilai_uts,
+ //          type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
+ //          headers  : any      = new Headers({ 'Content-Type': type}),
+ //          options  : any      = new RequestOptions({ headers: headers }),
+ //          url      : any      = this.baseURI + "mata_pelajaran/crud_input_nilai_siswa.php";
 
- this.http.post(url, body, options)
-      .subscribe((data) =>
-      {
-         // If the request was successful notify the user
-         if(data.status === 200)
-         {
-            this.hideForm   = true;
-            this.sendNotification(`Congratulations the mata-pelajaran: ${nilai_uas} was successfully added`);
-         }
-         // Otherwise let 'em know anyway
-         else
-         {
-            this.sendNotification('Something went wrong!');
-         }
-      });
+ // this.http.post(url, body, options)
+ //      .subscribe((data) =>
+ //      {
+ //         // If the request was successful notify the user
+ //         if(data.status === 200)
+ //         {
+ //            this.hideForm   = true;
+ //            this.sendNotification(`Congratulations the mata-pelajaran: ${nilai_uas} was successfully added`);
+ //         }
+ //         // Otherwise let 'em know anyway
+ //         else
+ //         {
+ //            this.sendNotification('Something went wrong!');
+ //         }
+ //      });
    }
 
 
@@ -125,5 +115,10 @@ export class AddNilaiSiswaPage {
       });
       notification.present();
    }
-   
+   closeModal()
+   {
+      this.navCtrl.push(HomeGuruPage, {
+      val: 'HomeGuruPage'
+    })
+   }
 }

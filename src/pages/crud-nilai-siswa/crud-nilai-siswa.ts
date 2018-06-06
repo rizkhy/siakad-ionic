@@ -1,8 +1,9 @@
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map'; 
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-
+import { NavController, ViewController } from 'ionic-angular';
+import { HomeGuruPage } from '../home-guru/home-guru';
+import { AddNilaiSiswaPage } from '../add-nilai-siswa/add-nilai-siswa';
 
 @Component({
   selector: 'page-crud-nilai-siswa',
@@ -11,7 +12,8 @@ import { NavController } from 'ionic-angular';
 export class CrudNilaiSiswaPage {
 
   public items : any = [];
-  constructor(public navCtrl: NavController, public http   : Http) {
+  constructor(public navCtrl: NavController, public http   : Http,
+              public viewCtrl       : ViewController) {
     
 
   }
@@ -35,9 +37,14 @@ export class CrudNilaiSiswaPage {
    }
 
   addNilai(){
-      this.navCtrl.push('AddNilaiSiswaPage');
+      this.navCtrl.push(AddNilaiSiswaPage);
    }
-
+   closeModal()
+   {
+      this.navCtrl.push(HomeGuruPage, {
+      val: 'HomeGuruPage'
+    })
+   }
 
 
 }

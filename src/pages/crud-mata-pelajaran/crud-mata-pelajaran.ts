@@ -1,8 +1,8 @@
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map'; 
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-
+import { NavController, ViewController } from 'ionic-angular';
+import { HomeTataUsahaPage } from '../home-tata-usaha/home-tata-usaha';
 /**
  * Generated class for the CrudMataPelajaranPage page.
  *
@@ -18,7 +18,8 @@ import { NavController } from 'ionic-angular';
 export class CrudMataPelajaranPage {
 
   public items : any = [];
-  constructor(public navCtrl: NavController, public http   : Http) {
+  constructor(public navCtrl: NavController, public http   : Http,
+              public viewCtrl       : ViewController) {
 		
 
   }
@@ -77,4 +78,11 @@ export class CrudMataPelajaranPage {
 
     }
 }
+
+closeModal()
+   {
+      this.navCtrl.push(HomeTataUsahaPage, {
+      val: 'HomeTataUsahaPage'
+    })
+   }
 }

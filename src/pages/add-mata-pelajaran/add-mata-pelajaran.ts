@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { CrudMataPelajaranPage } from '../crud-mata-pelajaran/crud-mata-pelajaran';
-
+import { HomeTataUsahaPage } from '../home-tata-usaha/home-tata-usaha';
 /**
  * Generated class for the Addmata-pelajaranPage page.
  *
@@ -42,7 +42,8 @@ export class AddMataPelajaranPage {
                public http       : Http,
                public NP         : NavParams,
                public fb         : FormBuilder,
-               public toastCtrl  : ToastController) 
+               public toastCtrl  : ToastController,
+               public viewCtrl       : ViewController) 
    {
 
       // Create form builder validation rules
@@ -78,7 +79,7 @@ export class AddMataPelajaranPage {
 
    load()
    {
-      this.http.get('http://localhost/mata_pelajaran/retrieve-data.php')
+      this.http.get('http://localhost/guru/group_guru.php')
       .map(res => res.json())
       .subscribe(data => 
       {
@@ -238,4 +239,10 @@ export class AddMataPelajaranPage {
       notification.present();
    }
 
+closeModal()
+   {
+      this.navCtrl.push(HomeTataUsahaPage, {
+      val: 'HomeTataUsahaPage'
+    })
+   }
 }

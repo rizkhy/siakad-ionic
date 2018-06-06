@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController} from 'ionic-angular';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { CrudSiswaPage } from '../crud-siswa/crud-siswa'
-
+import { CrudSiswaPage } from '../crud-siswa/crud-siswa';
+import { HomeTataUsahaPage } from '../home-tata-usaha/home-tata-usaha';
 /**
  * Generated class for the AddsiswaPage page.
  *
@@ -28,6 +28,9 @@ export class AddSiswaPage {
    public password					 : any;
    public nama_ortu					 : any;
    public pkjr_ortu                : any;
+   public kode_kelas                : any;
+   public semester                : any;
+   public thn_ajaran                : any;
    // Flag to be used for checking whether we are adding/editing an entry
    public isEdited               : boolean = false;
    // Flag to hide the form upon successful completion of remote operation
@@ -37,13 +40,14 @@ export class AddSiswaPage {
    // Property to store the recordID for when an existing entry is being edited
    public recordID               : any      = null;
    private baseURI               : string  = "http://localhost/";
-    
+    public items : any = [];
    // Initialise module classes
    constructor(public navCtrl    : NavController,
                public http       : Http,
                public NP         : NavParams,
                public fb         : FormBuilder,
-               public toastCtrl  : ToastController) 
+               public toastCtrl  : ToastController,
+              public viewCtrl    : ViewController) 
    {
 
       // Create form builder validation rules
@@ -53,7 +57,10 @@ export class AddSiswaPage {
          "alamat"			     : ["", Validators.required],
          "password"				 : ["", Validators.required],
          "nama_ortu"			 : ["", Validators.required],
-         "pkjr_ortu"             : ["", Validators.required]
+         "pkjr_ortu"             : ["", Validators.required],
+         "kode_kelas"             : ["", Validators.required],
+         "semester"             : ["", Validators.required],
+         "thn_ajaran"             : ["", Validators.required]
       });
    }
 
@@ -64,6 +71,7 @@ export class AddSiswaPage {
    {
       this.resetFields();
 
+      this.load();
       if(this.NP.get("record"))
       {
          this.isEdited      = true;
@@ -75,6 +83,16 @@ export class AddSiswaPage {
          this.isEdited      = false;
          this.pageTitle     = 'Tambah Data';
       }
+   }
+
+   load()
+   {
+      this.http.get('http://localhost/siswa/group_kelas.php')
+      .map(res => res.json())
+      .subscribe(data => 
+      {
+         this.items = data;         
+      });
    }
 
 
@@ -89,6 +107,9 @@ export class AddSiswaPage {
       this.password      = item.password;
       this.nama_ortu      = item.nama_ortu;
       this.pkjr_ortu      = item.pkjr_ortu;
+      this.kode_kelas      = item.kode_kelas;
+      this.semester      = item.semester;
+      this.thn_ajaran      = item.thn_ajaran;
       
    }
 
@@ -101,8 +122,11 @@ export class AddSiswaPage {
    // for the record data
    createEntry(nama)
    {
-      let body     : string   = "key=create&nama=" + nama + "&nis=" +this.nis +"&alamat="+ this.alamat + "&password=" + this.password +"&nama_ortu=" + this.nama_ortu+"&pkjr_ortu=" + this.pkjr_ortu ,
-      	  type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
+      let body     : string   = "key=create&nama=" + nama + "&nis=" +this.nis +"&alamat="+ this.alamat + 
+                     "&password=" + this.password +"&nama_ortu=" + this.nama_ortu +
+                     "&pkjr_ortu=" + this.pkjr_ortu + "&kode_kelas=" + this.kode_kelas + "&semester=" + this.semester +
+                     "&thn_ajaran=" + this.thn_ajaran ,
+      	 type     : string   = "application/x-www-form-urlencoded; charset=UTF-8",
           headers  : any      = new Headers({ 'Content-Type': type}),
           options  : any      = new RequestOptions({ headers: headers }),
           url      : any      = this.baseURI + "siswa/manage-data.php";
@@ -134,11 +158,14 @@ export class AddSiswaPage {
    // for the record data
    updateEntry(nama)
    {
-      let body       : string = "key=update&nama=" + nama + "&nis=" +this.nis +"&alamat="+ this.alamat + "&password=" + this.password +"&nama_ortu=" + this.nama_ortu+"&pkjr_ortu=" + this.pkjr_ortu ,
-          type       : string = "application/x-www-form-urlencoded; charset=UTF-8",
-          headers    : any     = new Headers({ 'Content-Type': type}),
-          options    : any     = new RequestOptions({ headers: headers }),
-          url        : any     = this.baseURI + "siswa/manage-data.php";
+      let body    : string   = "key=update&nama=" + nama + "&nis=" +this.nis +"&alamat="+ this.alamat + 
+                     "&password=" + this.password +"&nama_ortu=" + this.nama_ortu +
+                     "&pkjr_ortu=" + this.pkjr_ortu + "&kode_kelas=" + this.kode_kelas + "&semester=" + this.semester +
+                     "&thn_ajaran=" + this.thn_ajaran ,
+          type    : string = "application/x-www-form-urlencoded; charset=UTF-8",
+          headers : any     = new Headers({ 'Content-Type': type}),
+          options : any     = new RequestOptions({ headers: headers }),
+          url     : any     = this.baseURI + "siswa/manage-data.php";
 
       this.http.post(url, body, options)
       .subscribe(data =>
@@ -230,6 +257,13 @@ export class AddSiswaPage {
           duration      : 3000
       });
       notification.present();
+   }
+
+closeModal()
+   {
+      this.navCtrl.push(HomeTataUsahaPage, {
+      val: 'HomeTataUsahaPage'
+    })
    }
 
 }

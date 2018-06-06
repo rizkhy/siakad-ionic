@@ -2,7 +2,7 @@
   <ion-navbar color="danger">
     <ion-title>
       <h2 align="center">
-        Siswa
+        Data Siswa
       </h2>
     </ion-title>
     <ion-buttons start>
@@ -29,12 +29,29 @@
       </button>
  </ion-item>
 
-   <ion-item *ngFor="let item of items">
-      <h2>{{ item.nama }} </h2>
-      <button 
-         ion-button 
-         color="primary" 
-         item-right
-         (click)="viewEntry({ record: item })">Edit</button>
-   </ion-item>
+   <div class="row header">
+          <div class="col">NIS</div>
+          <div class="col">Nama</div>
+          <div class="col">Alamat</div>
+          <div class="col">Kelas</div>
+          <div class="col">Aksi</div>
+        </div>
+        <div class="row" ng-repeat="data in ctrl.data"  *ngFor="let item of items">
+          <div class="col">
+            {{ item.nis }}
+          </div>
+          <div class="col">
+            {{ item.nama }}
+          </div>
+          <div class="col">
+            {{ item.alamat }}
+          </div>
+          <div class="col">
+            {{ item.nama_kelas }}
+          </div>
+          <div class="col">
+            <button ion-button color="primary" item-right (click)="viewEntry({ record: item })">Edit</button>
+          </div>
+        </div>
 </ion-content>
+   

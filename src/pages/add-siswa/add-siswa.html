@@ -6,8 +6,17 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-   <ion-title>{{ pageTitle }}</ion-title>
+  <ion-navbar  color="danger">
+   <ion-title>
+   <h2 align="center">
+   {{ pageTitle }}
+   </h2>
+   </ion-title>
+   <ion-buttons start>
+         <button ion-button color="white" (click)="closeModal()">
+            <ion-icon name="home"></ion-icon>
+         </button>
+      </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -85,6 +94,29 @@
                         placeholder="Masukkan Pekerjaan Orang Tua" 
                         formControlName="pkjr_ortu" 
                         [(ngModel)]="pkjr_ortu">
+                      </ion-input>
+                  </ion-item>
+                  <ion-item>
+                     <ion-label>Kelas</ion-label>
+                        <ion-select  
+                        formControlName="kode_kelas" [(ngModel)]="kode_kelas">
+                          <ion-option  *ngFor="let item of items" value="{{ item.kode_kelas }}">{{ item.nama_kelas }}</ion-option>
+                      </ion-select>
+                  </ion-item>
+                  <ion-item>
+                     <ion-input 
+                        type="text" 
+                        placeholder="Masukkan Semester" 
+                        formControlName="semester" 
+                        [(ngModel)]="semester">
+                      </ion-input>
+                  </ion-item>
+                  <ion-item>
+                     <ion-input 
+                        type="text" 
+                        placeholder="Masukkan Tahun Ajaran" 
+                        formControlName="thn_ajaran" 
+                        [(ngModel)]="thn_ajaran">
                       </ion-input>
                   </ion-item>
                </ion-item-group>

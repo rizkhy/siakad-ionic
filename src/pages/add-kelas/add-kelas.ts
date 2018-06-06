@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { CrudKelasPage } from '../crud-kelas/crud-kelas';
-
+import { HomeTataUsahaPage } from '../home-tata-usaha/home-tata-usaha';
 /**
  * Generated class for the Addmata-pelajaranPage page.
  *
@@ -40,7 +40,8 @@ export class AddKelasPage {
                public http       : Http,
                public NP         : NavParams,
                public fb         : FormBuilder,
-               public toastCtrl  : ToastController) 
+               public toastCtrl  : ToastController,
+               public viewCtrl       : ViewController) 
    {
 
       // Create form builder validation rules
@@ -218,6 +219,13 @@ export class AddKelasPage {
           duration      : 3000
       });
       notification.present();
+   }
+
+closeModal()
+   {
+      this.navCtrl.push(HomeTataUsahaPage, {
+      val: 'HomeTataUsahaPage'
+    })
    }
 
 }

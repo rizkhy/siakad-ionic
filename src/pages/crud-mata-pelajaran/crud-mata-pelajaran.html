@@ -1,8 +1,15 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="danger">
     <ion-title>
-      Mata Pelajaran
+      <h2 align="center">
+        Data Mata Pelajaran
+      </h2>
     </ion-title>
+    <ion-buttons start>
+         <button ion-button color="white" (click)="closeModal()">
+            <ion-icon name="home"></ion-icon>
+         </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -22,13 +29,24 @@
       </button>
  </ion-item>
 
-   <ion-item *ngFor="let item of items">
-      <h2>{{ item.kode_mp }} - {{ item.nama_mp }}</h2> 
-      <button 
-         ion-button 
-         color="primary" 
-         item-right
-         (click)="viewEntry({ record: item })">Edit</button>
-   </ion-item>
-
+   <div class="row header">
+          <div class="col">Kode Mata Pelajaran</div>
+          <div class="col">Nama Mata Pelajaran</div>
+          <div class="col">KKM</div>
+          <div class="col">Aksi</div>
+        </div>
+        <div class="row" ng-repeat="data in ctrl.data"  *ngFor="let item of items">
+          <div class="col">
+            {{ item.kode_mp }}
+          </div>
+          <div class="col">
+            {{ item.nama_mp }}
+          </div>
+          <div class="col">
+            {{ item.KKM }}
+          </div>
+          <div class="col">
+            <button ion-button color="primary" item-right (click)="viewEntry({ record: item })">Edit</button>
+          </div>
+        </div>
 </ion-content>

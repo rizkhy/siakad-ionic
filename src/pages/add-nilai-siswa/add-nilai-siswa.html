@@ -8,37 +8,33 @@
 
 
 <ion-content padding>
-	<div *ngFor="let item of items">
 	Input Nilai Siswa Kelas blablabla<br>
 	Semester : blablabla<br>
 	Tahun Ajaran : blablabla<br>
 	Mata Pelajaran : blablabla<br>
-	KKM : {{item.KKM}}<br>
-	</div>
+	KKM : {{kkm}}<br>
 		<div class="row header">
           <div class="col">NIS</div>
           <div class="col">Nama Siswa</div>
           <div class="col">Nilai UTS</div>
           <div class="col">Nilai UAS</div>
         </div>
-        <form [formGroup]="form" (ngSubmit)="addEntry()">
+        <form [formGroup]="form" (ngSubmit)="addEntry(form.value)">
         <div class="row" ng-repeat="data in ctrl.data" *ngFor="let item of items">
           <div class="col">
           	{{ item.nis }}
           </div>
           <div class="col">
-          	{{ item.nama }}  {{ item.name_nilai_uts }}
+          	{{ item.nama }} 
           </div>
           <div class="col">
-          	<ion-input type="text" placeholder="Masukkan UTS" formControlName="nilai_uts" 
-                        [(ngModel)]="nilai_uts"></ion-input>
+          	<ion-input type="text" placeholder="Masukkan UTS" [formControlName]="item.uts"></ion-input>
           </div>
           <div class="col">
-          	<ion-input type="text" placeholder="Masukkan UAS"  formControlName="nilai_uas" 
-                        [(ngModel)]="nilai_uas"></ion-input>
+          	<ion-input type="text" placeholder="Masukkan UAS"  [formControlName]="item.uas" ></ion-input>
           </div>
         </div>
-          <button ion-button class="font">
+          <button ion-button class="font" type="submit">
 			Input Nilai
 		  </button>
       </form>  	

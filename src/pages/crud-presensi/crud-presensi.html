@@ -1,34 +1,34 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="danger">
     <ion-title>
-      Presensi
+      <h2 align="center">
+        Data Presensi
+      </h2>
     </ion-title>
+    <ion-buttons start>
+         <button ion-button color="white" (click)="closeModal()">
+            <ion-icon name="home"></ion-icon>
+         </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-<ion-item>
-      <button 
-         class="add"
-         ion-button 
-         item-right
-         icon-right
-         margin-bottom
-         color="primary"
-         (click)="addEntry()">
-            Tambah Kata
-            <ion-icon name="add"></ion-icon>
-      </button>
- </ion-item>
-
-   <ion-item *ngFor="let item of items">
-      <h2>{{ item.nis }} </h2>
-      <button 
-         ion-button 
-         color="primary" 
-         item-right
-         (click)="viewEntry({ record: item })">Ubah</button>
-   </ion-item>
-
+    <div class="row header">
+          <div class="col">Nama Kelas</div>
+          <div class="col">Mata Pelajaran</div>
+          <div class="col">Aksi</div>
+        </div>
+        <div class="row" ng-repeat="data in ctrl.data"  *ngFor="let item of items">
+          <div class="col">
+            {{ item.nis }}
+          </div>
+          <div class="col">
+            {{ item.kode_mp }}
+          </div>
+          <div class="col">
+            <button ion-button class="font" (click)='addEntry()'>
+Edit      </button>
+          </div>
+        </div>
 </ion-content>

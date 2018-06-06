@@ -34,6 +34,18 @@
       <p>Pekejerjaan Orang Tua</p>
       <h2>{{ item.pkjr_ortu }}</h2>
     </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Kelas</p>
+      <h2>{{ item.kode_kelas }}</h2>
+    </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Semester</p>
+      <h2>{{ item.semester }}</h2>
+    </ion-item>
+    <ion-item *ngFor="let item of items">
+      <p>Tahun Ajaran</p>
+      <h2>{{ item.thn_ajaran }}</h2>
+    </ion-item>
 </ion-list>
 
  </ion-content>
