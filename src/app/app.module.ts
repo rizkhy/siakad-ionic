@@ -23,6 +23,8 @@ import { CrudPresensiPage } from '../pages/crud-presensi/crud-presensi';
 import { LoginPage } from '../pages/login/login';
 import { CrudKelasPage } from '../pages/crud-kelas/crud-kelas';
 import { AddNilaiSiswaPage } from '../pages/add-nilai-siswa/add-nilai-siswa';
+import { GantiPasswordSiswaPage } from '../pages/ganti-password-siswa/ganti-password-siswa';
+
 
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
@@ -51,7 +53,8 @@ import { AuthProvider } from '../providers/auth/auth';
     CrudPresensiPage,
     LoginPage,
     CrudKelasPage,
-    AddNilaiSiswaPage
+    AddNilaiSiswaPage,
+    GantiPasswordSiswaPage
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,8 @@ import { AuthProvider } from '../providers/auth/auth';
     CrudPresensiPage,
     LoginPage,
     CrudKelasPage,
-    AddNilaiSiswaPage
+    AddNilaiSiswaPage,
+    GantiPasswordSiswaPage
   ],
   providers: [
     StatusBar,

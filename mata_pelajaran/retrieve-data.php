@@ -22,7 +22,8 @@
 
    // Attempt to query database table and retrieve data  
    try {    
-      $stmt    = $pdo->query('SELECT nip, nama, alamat, password FROM guru ORDER BY nip ASC');
+      $stmt    = $pdo->query('SELECT *, guru.nama FROM guru,mata_pelajaran WHERE mata_pelajaran.nip=guru.nip
+                              Order By mata_pelajaran.kode_mp');
       while($row  = $stmt->fetch(PDO::FETCH_OBJ))
       {
          // Assign each row of data to associative array
@@ -36,6 +37,5 @@
    {
       echo $e->getMessage();
    }
-
 
 ?>

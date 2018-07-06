@@ -32,33 +32,27 @@
       case "create":
 
          // Sanitise URL supplied values
-         $nip       = filter_var($_REQUEST['nip'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $nama      = filter_var($_REQUEST['nama'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $alamat    = filter_var($_REQUEST['alamat'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $password  = filter_var($_REQUEST['password'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-          $sql  = "INSERT INTO guru(nip, nama, alamat, password) 
-                   VALUES($nip, '$nama', '$alamat', '$password')";
-
-          $sql_2  = "INSERT INTO akun(no_id, level, password) 
-                   VALUES($nis, '1', '$password')";
+         $kode_mp       = filter_var($_REQUEST['kode_mp'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $nama_mp      = filter_var($_REQUEST['nama_mp'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $KKM     = filter_var($_REQUEST['KKM'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $nip     = filter_var($_REQUEST['nip'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+          $sql  = "INSERT INTO mata_pelajaran(kode_mp, nama_mp, KKM, nip) 
+                   VALUES($kode_mp, '$nama_mp', $KKM, $nip)";
 
                   echo $sql;
-                  echo $sql_2;
-
          
          mysqli_query($link, $sql);
-         mysqli_query($link, $sql_2);
          // Attempt to run PDO prepared statement
          // try {
-         //    $sql  = "INSERT INTO guru(nip, nama, tahun, alamat, password) 
-         //          VALUES(:nip, :nama, :tahun, :alamat, :password)";
+         //    $sql  = "INSERT INTO mata_pelajaran(kode_mp, nama_mp, KKM, alamat, password) 
+         //          VALUES(:kode_mp, :nama_mp, :KKM, :alamat, :password)";
          //          echo $sql;
             // $stmt = $pdo->prepare($sql);
-            // $stmt->bindParam(':nip', $nip, PDO::PARAM_INT);
+            // $stmt->bindParam(':kode_mp', $kode_mp, PDO::PARAM_INT);
             // $stmt->execute();
             ;
 
-            echo json_encode(array('message' => 'Congratulations the record ' . $nip . ' was added to the database'));
+            echo json_encode(array('message' => 'Congratulations the record ' . $kode_mp . ' was added to the database'));
          // }
          // Catch any errors in running the prepared statement
          // catch(PDOException $e)
@@ -72,31 +66,31 @@
 
       // Update an existing record in the technologies table
       case "update":
-         $nip       = filter_var($_REQUEST['nip'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $nama      = filter_var($_REQUEST['nama'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $alamat    = filter_var($_REQUEST['alamat'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         $password  = filter_var($_REQUEST['password'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $kode_mp       = filter_var($_REQUEST['kode_mp'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $nama_mp      = filter_var($_REQUEST['nama_mp'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $KKM     = filter_var($_REQUEST['KKM'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         $nip     = filter_var($_REQUEST['nip'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
 
-         echo $nama;
-          // $sql  = "UPDATE guru SET nama = $nama, alamat = $alamat, password = $password, tahun = $tahun WHERE nip = $nip";
-          $sql = "UPDATE `guru` SET `nip`=$nip, `nama`='$nama',`alamat`='$alamat',`password`='$password' WHERE nip = $nip";
+         echo $nama_mp;
+          // $sql  = "UPDATE mata_pelajaran SET nama_mp = $nama_mp, alamat = $alamat, password = $password, KKM = $KKM WHERE kode_mp = $kode_mp";
+          $sql = "UPDATE `mata_pelajaran` SET `kode_mp`=$kode_mp, `nama_mp`='$nama_mp',`KKM`='$KKM', `nip`='$nip' WHERE kode_mp = $kode_mp";
 
                   echo $sql;
          
          mysqli_query($link, $sql );
          // Sanitise URL supplied values
          //$name          = filter_var($_REQUEST['name'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         // $nip   = filter_var($_REQUEST['nip'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-         // $nama  = filter_var($_REQUEST['nama'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         // $kode_mp   = filter_var($_REQUEST['kode_mp'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
+         // $nama_mp  = filter_var($_REQUEST['nama_mp'], FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
          // // Attempt to run PDO prepared statement
          // try {
-         //    $sql  = "UPDATE guru SET nip = :nip WHERE nip = :nip";
+         //    $sql  = "UPDATE mata_pelajaran SET kode_mp = :kode_mp WHERE kode_mp = :kode_mp";
          //    $stmt =  $pdo->prepare($sql);
          //   // $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-         //    $stmt->bindParam(':nip', $nip, PDO::PARAM_INT);
+         //    $stmt->bindParam(':kode_mp', $kode_mp, PDO::PARAM_INT);
          //    $stmt->execute();
 
-            echo json_encode('Congratulations the record ' . $nip . ' was updated');
+            echo json_encode('Congratulations the record ' . $kode_mp . ' was updated');
          // }
          // // Catch any errors in running the prepared statement
          // catch(PDOException $e)
@@ -112,18 +106,18 @@
       case "delete":
 
          // Sanitise supplied record ID for matching to table record
-          $nip   =  filter_var($_REQUEST['nip'], FILTER_SANITIZE_NUMBER_INT);
+          $kode_mp   =  filter_var($_REQUEST['kode_mp'], FILTER_SANITIZE_NUMBER_INT);
 
          // // Attempt to run PDO prepared statement
          // try {
          //    $pdo  = new PDO($dsn, $un, $pwd);
-            $sql  = "DELETE FROM guru WHERE nip = $nip";
+            $sql  = "DELETE FROM mata_pelajaran WHERE kode_mp = $kode_mp";
             mysqli_query($link, $sql );
             // $stmt = $pdo->prepare($sql);
-            // $stmt->bindParam(':nip', $nip, PDO::PARAM_INT);
+            // $stmt->bindParam(':kode_mp', $kode_mp, PDO::PARAM_INT);
             // $stmt->execute();
 
-            echo json_encode('Congratulations the record ' . $nip . ' was removed');
+            echo json_encode('Congratulations the record ' . $kode_mp . ' was removed');
          // }
          // // Catch any errors in running the prepared statement
          // catch(PDOException $e)

@@ -25,7 +25,8 @@
     <ion-item *ngFor="let item of items">
       <ion-icon name="ios-list-box-outline" danger item-left></ion-icon>
       <h2>{{ item.nama_mp }}</h2>
-      <h3>Nilai : {{ item.nilai_akhir }}</h3>
+      <p>Nilai Keterampilan : {{ item.rata }}</p>
+      <p>Nilai Pengetahuan : {{ item.rata2 }}</p>
     </ion-item>
   </ion-list>
 </ion-content>

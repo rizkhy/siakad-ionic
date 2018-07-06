@@ -16,19 +16,23 @@ export class PresensiSiswaPage {
 
   ionViewWillEnter()
    {
-      this.load();
+      this.getData();
    }
 
-  load()
-   {
+  getData(){
+     var dataa = localStorage.getItem('userData');
+     var username = localStorage.getItem('userData');
+     
+    return new Promise((resolve, reject)=>{
+      let headers = new Headers();
+      let data = JSON.stringify(dataa);
+
       this.http.get('http://localhost/siswa/presensi-siswa.php')
       .map(res => res.json())
-      .subscribe(data => 
-      {
-         this.items = data;     
-             
-      });
-   }
-
+      .subscribe(data =>{
+        this.items = data;        
+      })
+      })
+  }
 
 }

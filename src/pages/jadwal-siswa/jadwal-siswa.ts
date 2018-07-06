@@ -21,6 +21,7 @@ export class JadwalSiswaPage {
    }
 
    getData(){
+    var username = localStorage.getItem('userData');
     var dataa = localStorage.getItem('userData');
 
 

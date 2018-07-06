@@ -6,6 +6,7 @@ import { BiodataSiswaPage } from '../biodata-siswa/biodata-siswa';
 import { TranskipSiswaPage } from '../transkip-siswa/transkip-siswa';
 import { PresensiSiswaPage } from '../presensi-siswa/presensi-siswa';
 import { JadwalSiswaPage } from '../jadwal-siswa/jadwal-siswa';
+import { GantiPasswordSiswaPage } from '../ganti-password-siswa/ganti-password-siswa';
 
 /**
  * Generated class for the HomeSiswaPage page.
@@ -61,6 +62,12 @@ export class HomeSiswaPage {
   transkipSiswa(){
     this.navCtrl.push(TranskipSiswaPage, {
       val: 'transkipSiswa'
+    })
+  }
+
+  gantiPassword(){
+    this.navCtrl.push(GantiPasswordSiswaPage, {
+      val: 'gantiPassword'
     })
   }
 
