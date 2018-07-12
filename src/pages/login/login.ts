@@ -25,26 +25,29 @@ ionViewLoad(){
 }
 
 login(){
-	if(this.userData.username && this.userData.password){
-		this.auth.postData(this.userData, 'login').then((result)=>{
-			this.response = result;
-			if(this.response.userData.level == '1'){
-				alert('Anda Berhasil Masuk Sebagai Guru');
-				localStorage.setItem('userData.', JSON.stringify(this.userData.username));
-				this.navCtrl.push(HomeGuruPage);
+ if(this.userData.username != '' && this.userData.password !=''){
+  this.auth.postData(this.userData, 'login').then((result)=>{
+   this.response = result;
+   if (this.response.alert) {
+    alert('Login Gagal');
+    this.navCtrl.push(LoginPage)
+   }
+   else if(this.response.userData.level == '1'){
+    alert('Anda Berhasil Masuk Sebagai Guru');
+    localStorage.setItem('userData.', JSON.stringify(this.userData.username));
+    this.navCtrl.push(HomeGuruPage);
 
-			}else if(this.response.userData.level == '2'){
-				alert('Anda Berhasil Masuk Sebagai Siswa');
-				localStorage.setItem('userData', JSON.stringify(this.userData.username));
-				this.navCtrl.push(HomeSiswaPage);
-			}else if(this.response.userData.level != '2' || this.response.userData.level != '1'){
-				alert('Username atau Password Salah');
-				localStorage.setItem('userData', JSON.stringify(this.userData.username));
-				this.navCtrl.push(LoginPage);
-			}
-	});
+   }else if(this.response.userData.level == '2'){
+    alert('Anda Berhasil Masuk Sebagai Siswa');
+    localStorage.setItem('userData', JSON.stringify(this.userData.username));
+    this.navCtrl.push(HomeSiswaPage);
+   }
+   else{
+    alert('Terjadi Kesalahan');
+   }
+ });
 }else {
-	this.presentToast("Username atau Password Salah");
+ this.presentToast("Username atau Password Salah");
 }
 }
 

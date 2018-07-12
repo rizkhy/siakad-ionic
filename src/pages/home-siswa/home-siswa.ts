@@ -7,7 +7,7 @@ import { TranskipSiswaPage } from '../transkip-siswa/transkip-siswa';
 import { PresensiSiswaPage } from '../presensi-siswa/presensi-siswa';
 import { JadwalSiswaPage } from '../jadwal-siswa/jadwal-siswa';
 import { GantiPasswordSiswaPage } from '../ganti-password-siswa/ganti-password-siswa';
-
+import { LoginPage } from '../login/login';
 /**
  * Generated class for the HomeSiswaPage page.
  *
@@ -27,6 +27,12 @@ export class HomeSiswaPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomeSiswaPage');
+  }
+
+  logout(){
+    this.navCtrl.push(LoginPage, {
+      val: 'Login'
+    })
   }
 
   dataMataPelajaran(){

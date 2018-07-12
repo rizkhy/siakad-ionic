@@ -2,7 +2,7 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map'; 
 import { Component } from '@angular/core';
 import { NavController, ViewController } from 'ionic-angular';
-import { HomeGuruPage } from '../home-guru/home-guru';
+// import { HomeGuruPage } from '../home-guru/home-guru';
 
 
 @Component({
@@ -36,11 +36,5 @@ export class BiodataGuruPage {
       })
   		})
   }
-   closeModal()
-   {
-      this.navCtrl.push(HomeGuruPage, {
-      val: 'HomeGuruPage'
-    })
-   }
 
 }

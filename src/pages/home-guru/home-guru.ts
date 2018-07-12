@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CrudNilaiSiswaPage } from '../crud-nilai-siswa/crud-nilai-siswa';
+import { MengajarGuruPage } from '../mengajar-guru/mengajar-guru';
 import { BiodataGuruPage } from '../biodata-guru/biodata-guru';
+import { LoginPage } from '../login/login';
+
 /**../crud-guru/crud-guru
  * Generated class for the HomeTataUsahaPage page.
  *
@@ -19,13 +21,19 @@ export class HomeGuruPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+    logout(){
+    this.navCtrl.push(LoginPage, {
+      val: 'Login'
+    })
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomeTataUsahaPage');
   }
 
-  crudNilaiSiswa(){
-    this.navCtrl.push(CrudNilaiSiswaPage, {
-      val: 'crudNilaiSiswa'
+  mengajarGuru(){
+    this.navCtrl.push(MengajarGuruPage, {
+      val: 'mengajarGuru'
     })
   }
 

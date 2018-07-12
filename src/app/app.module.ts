@@ -24,7 +24,7 @@ import { LoginPage } from '../pages/login/login';
 import { CrudKelasPage } from '../pages/crud-kelas/crud-kelas';
 import { AddNilaiSiswaPage } from '../pages/add-nilai-siswa/add-nilai-siswa';
 import { GantiPasswordSiswaPage } from '../pages/ganti-password-siswa/ganti-password-siswa';
-
+import { MengajarGuruPage } from '../pages/mengajar-guru/mengajar-guru';
 
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
@@ -54,7 +54,8 @@ import { AuthProvider } from '../providers/auth/auth';
     LoginPage,
     CrudKelasPage,
     AddNilaiSiswaPage,
-    GantiPasswordSiswaPage
+    GantiPasswordSiswaPage,
+    MengajarGuruPage
   ],
   imports: [
     BrowserModule,
@@ -85,7 +86,8 @@ import { AuthProvider } from '../providers/auth/auth';
     LoginPage,
     CrudKelasPage,
     AddNilaiSiswaPage,
-    GantiPasswordSiswaPage
+    GantiPasswordSiswaPage,
+    MengajarGuruPage
   ],
   providers: [
     StatusBar,

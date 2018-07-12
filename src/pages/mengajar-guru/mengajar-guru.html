@@ -1,13 +1,11 @@
-<!--
-  Generated template for the MengajarGuruPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>mengajar-guru</ion-title>
+<ion-navbar  color="dark">
+   <ion-title>
+   <h2 align="center">
+   Jadwal Mengajar
+   </h2>
+   </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,4 +13,13 @@
 
 <ion-content padding>
 
-</ion-content>
+
+<ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-icon name="md-calendar" danger item-left></ion-icon>
+      <h2>{{ item.nama_mp }}</h2>
+      <h3>Ruang : {{ item.nama_kelas }}</h3>
+      <p> Hari : {{ item.hari }} | Jam : {{ item.jam }}</p>
+    </ion-item>
+  </ion-list>
+ </ion-content>

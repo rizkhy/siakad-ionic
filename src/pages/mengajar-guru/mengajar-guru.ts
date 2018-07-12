@@ -1,25 +1,39 @@
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map'; 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
+// import { HomeGuruPage } from '../home-guru/home-guru';
 
-/**
- * Generated class for the MengajarGuruPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-@IonicPage()
 @Component({
   selector: 'page-mengajar-guru',
   templateUrl: 'mengajar-guru.html',
 })
 export class MengajarGuruPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ public items : any = [];
+  constructor(public navCtrl: NavController, public http   : Http,
+              public viewCtrl       : ViewController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MengajarGuruPage');
-  }
+  ionViewWillEnter()
+   {
+      this.getData();
+   }
 
+  
+   getData(){
+     var dataa = localStorage.getItem('userData.');
+   
+  	return new Promise((resolve, reject)=>{
+  		let headers = new Headers();
+      let data = JSON.stringify(dataa);
+      
+  		this.http.post('http://localhost/guru/mengajar.php', data, {headers: headers})
+      .map(res => res.json())
+      .subscribe(data =>{
+        this.items = data;        
+      })
+  		})
+  }
 }

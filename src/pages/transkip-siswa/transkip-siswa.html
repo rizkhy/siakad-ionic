@@ -8,12 +8,18 @@
 
 
 <ion-content padding>
-  <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
+  <ion-item>
+      <ion-label>Semester</ion-label>
+        <ion-select [(ngModel)]="semester" (ionChange)="getSemester()">
+          <ion-option value="Ganjil">Ganjil</ion-option>
+          <ion-option value="Genap">Genap</ion-option>
+        </ion-select>
+  </ion-item>
   <ion-list>
     <ion-item *ngFor="let item of items">
-      <ion-icon name="clipboard" danger item-left></ion-icon>
+      <ion-icon name="ios-list-box-outline" danger item-left></ion-icon>
       <h2>{{ item.nama_mp }}</h2>
-      <p>{{ item.nilai_akhir }}</p>
+      <p>Nilai : {{ item.nilai_akhir }}</p>
     </ion-item>
-</ion-list>
+  </ion-list>
 </ion-content>

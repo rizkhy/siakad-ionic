@@ -1,21 +1,28 @@
 <ion-header>
-  <ion-navbar color="dark">
-    <ion-title>
-    	<h2 align="center">
-      		Guru
-      	</h2>
-    </ion-title>
+
+  <ion-navbar  hideBackButton color="dark">
+    <ion-title align="center">Home</ion-title>
+    <ion-buttons start>
+         <button ion-button color="white" (click)="logout()">
+            <ion-icon name="exit"></ion-icon>
+         </button>
+    </ion-buttons>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
-
-<button ion-button class="font" (click)='crudNilaiSiswa()'>
-  CRUD Nilai Siswa
-</button>
-
-<button ion-button class="font" (click)='biodataGuru()'>
-  Biodata
-</button>
+<div class="row">
+	<div class="col">
+<!-- <button class="font" (click)='biodataSiswa()'> -->
+	<img src="assets/img/siswa.png" (click)='biodataGuru()'>Biodata
+<!-- </button> -->
+	</div>
+	<div class="col">
+<!-- <button class="font" (click)='jadwalSiswa()'> -->
+	<img src="assets/img/calendar-flat.png" (click)='mengajarGuru()'>Jadwal Mengajar
+<!-- </button> -->
+	</div>
+</div>
 
 </ion-content>

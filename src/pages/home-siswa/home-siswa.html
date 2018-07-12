@@ -1,7 +1,12 @@
 <ion-header>
 
-  <ion-navbar  color="primary">
-    <ion-title>Home</ion-title>
+  <ion-navbar  hideBackButton color="primary">
+    <ion-title align="center">Home</ion-title>
+    <ion-buttons start>
+         <button ion-button color="white" (click)="logout()">
+            <ion-icon name="exit"></ion-icon>
+         </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -11,12 +16,13 @@
 <div class="row">
     <div class="col">
 <!-- <button class="font" (click)='dataMataPelajaran()'> -->
-	<img src="assets/img/mapel.png" (click)='dataMataPelajaran()'>Mata Pelajaran
+	
+	<!-- <img src="assets/img/mapel.png" (click)='dataMataPelajaran()'>Mata Pelajaran -->
 <!-- </button> -->
 	</div>
 	<div class="col">
 <!-- <button class="font" (click)='dataNilaiSiswa()'> -->
-	<img src="assets/img/123.png" (click)='dataNilaiSiswa()'>Nilai
+	<!-- <img src="assets/img/123.png" (click)='dataNilaiSiswa()'>Nilai -->
 <!-- </button> -->
 	</div>
 </div>
@@ -45,7 +51,7 @@
 	</div>
 	<div class="col">
 <!-- <button class="font" (click)='transkipSiswa()'> -->
-	<img src="assets/img/transkip1.png" (click)='gantiPassword()'>Ganti Password
+	<img src="assets/img/Access-Control-Lock.png" (click)='gantiPassword()'>Ganti Password
 <!-- </button> -->
 	</div>
 </div>

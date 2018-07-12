@@ -79,7 +79,7 @@ export class GantiPasswordSiswaPage {
    // used as models on the page's HTML form
    selectEntry(item)
    {
-   	  var username = localStorage.getItem('userData');
+   	// var username = localStorage.getItem('userData');
       this.p_lama      		= item.p_lama;
       this.p_baru      		= item.p_baru;
       this.ulang_password   = item.ulangi_password;
@@ -103,7 +103,8 @@ export class GantiPasswordSiswaPage {
          if(data.status === 200)
          {
             this.hideForm  =  true;
-            this.sendNotification(`Congratulations the mata-pelajaran: was successfully updated`);
+            this.sendNotification(`Selamat, ganti password telah berhasil`);
+            this.navCtrl.push(HomeSiswaPage);
          }
          // Otherwise let 'em know anyway
          else
@@ -152,13 +153,6 @@ export class GantiPasswordSiswaPage {
           duration      : 3000
       });
       notification.present();
-   }
-
-closeModal()
-   {
-      this.navCtrl.push(HomeSiswaPage, {
-      val: 'HomeSiswaPage'
-    })
    }
 
 }

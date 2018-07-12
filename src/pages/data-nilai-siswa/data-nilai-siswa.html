@@ -11,12 +11,8 @@
 	<ion-item>
       <ion-label>Semester</ion-label>
         <ion-select [(ngModel)]="semester" (ionChange)="getSemester()">
-          <ion-option value="1">Satu</ion-option>
-          <ion-option value="2">Dua</ion-option>
-          <ion-option value="3">Tiga</ion-option>
-          <ion-option value="4">Empat</ion-option>
-          <ion-option value="5">Lima</ion-option>
-          <ion-option value="6">Enam</ion-option>
+          <ion-option value="Ganjil">Ganjil</ion-option>
+          <ion-option value="Genap">Genap</ion-option>
         </ion-select>
   </ion-item>
 
@@ -25,8 +21,7 @@
     <ion-item *ngFor="let item of items">
       <ion-icon name="ios-list-box-outline" danger item-left></ion-icon>
       <h2>{{ item.nama_mp }}</h2>
-      <p>Nilai Keterampilan : {{ item.rata }}</p>
-      <p>Nilai Pengetahuan : {{ item.rata2 }}</p>
+      <p>Nilai : {{ item.nilai_akhir }}</p>
     </ion-item>
   </ion-list>
 </ion-content>
